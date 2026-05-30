@@ -8,7 +8,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Initialize Postgres pool
-const pool = new Pool();
+const pool = process.env.DATABASE_URL
+  ? new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false } // Required by Render Postgres
+    })
+  : new Pool();
 
 // Initialize Groq client
 const groq = new Groq({
