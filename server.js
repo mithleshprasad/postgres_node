@@ -41,7 +41,7 @@ initDb();
 // Get chat history
 app.get('/history', async (req, res) => {
   try {
-    const results = await pool.query('SELECT role, content FROM chat_messages ORDER BY id ASC');
+    const resultss = await pool.query('SELECT role, content FROM chat_messages ORDER BY id ASC');
     res.json(result.rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
